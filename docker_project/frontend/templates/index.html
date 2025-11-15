@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LichtFeld Video Processor</title>
+		<link rel="stylesheet" href="/static/css/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<h1>🎥 LichtFeld Video Processor</h1>
+				<p class="subtitle">
+					Upload your video and configure COLMAP processing parameters
+				</p>
+			</div>
+
+			<form id="uploadForm" class="upload-form">
+				<div class="form-group">
+					<label for="videoFile">
+						<span class="label-text">Video File</span>
+						<span class="label-hint"
+							>Supported formats: MP4, AVI, MOV, MKV</span
+						>
+					</label>
+					<div class="file-input-wrapper">
+						<input
+							type="file"
+							id="videoFile"
+							name="video"
+							accept="video/*"
+							required
+						/>
+						<div class="file-input-display">
+							<span class="file-icon">📁</span>
+							<span class="file-text">Choose video file...</span>
+						</div>
+					</div>
+					<div class="file-info" id="fileInfo"></div>
+				</div>
+
+				<div class="form-group">
+					<label for="fps">
+						<span class="label-text">Frames Per Second (FPS)</span>
+						<span class="label-hint"
+							>Number of frames to extract per second
+							(1-120)</span
+						>
+					</label>
+					<input
+						type="number"
+						id="fps"
+						name="fps"
+						min="1"
+						max="120"
+						value="30"
+						required
+					/>
+				</div>
+
+				<button type="submit" class="btn-submit" id="submitBtn">
+					<span class="btn-icon">▶</span>
+					<span class="btn-text">Process Video</span>
+				</button>
+			</form>
+
+			<div class="status" id="status"></div>
+
+			<div
+				class="progress-container"
+				id="progressContainer"
+				style="display: none"
+			>
+				<div class="progress-bar">
+					<div class="progress-fill" id="progressFill"></div>
+				</div>
+				<div class="progress-text" id="progressText">Processing...</div>
+			</div>
+
+			<div class="info-section">
+				<h3>ℹ️ About This Tool</h3>
+				<p>
+					This tool processes videos through the COLMAP pipeline for
+					3D reconstruction. Upload your video, specify the frame
+					extraction rate, and receive a complete COLMAP project ready
+					for further processing.
+				</p>
+			</div>
+		</div>
+
+		<script src="/static/js/app.js"></script>
+	</body>
+</html>
