@@ -21,40 +21,20 @@
 
 ## Docker Container
 
-- **Stop your current container (if applicable):**
-
 ```bash
-docker stop lichtfeld-run
-docker rm lichtfeld-run
-```
+Usage: ./lichtfeld_docker.sh [-u] [-c] [-d] [-e COMMAND] [-h]
+  -u       Start container (docker-compose up)
+  -d       Stop container (docker-compose down)
+  -c       Clean ouput directories
+  -e CMD   Execute command in running container
+  -s       Enter container shell
+  -h       Show this help message
 
-- **Start the new container:**
-
-```bash
-./lichtfeld.sh -u
-```
-
-- **Run the pipeline:**
-
-```bash
-./lichtfeld.sh -e './pipeline_colmap.sh /data/output3.mp4 colmap_project 10'
-```
-
-- **Run your LichtFeld Studio:**
-
-```bash
-./lichtfeld.sh -e ./run_lichtfeld_studio.sh
-```
-
-- **Or enter the container interactively:**
-
-```bash
-./lichtfeld.sh -s
-# Then inside: ./run_lichtfeld_studio.sh
-```
-
-- **Stop when done:**
-
-```bash
- ./lichtfeld.sh -d
+Examples:
+  ./lichtfeld_docker.sh -u                              # Start container
+  ./lichtfeld_docker.sh -e ./run_lichtfeld_studio.sh    # Run studio
+  ./lichtfeld_docker.sh -c                              # Clean output directories
+  ./lichtfeld_docker.sh -e './pipeline_colmap.sh /data/video.mp4 output 10'  # Run pipeline
+  ./lichtfeld_docker.sh -s                              # Enter container shell
+  ./lichtfeld_docker.sh -d                              # Stop container
 ```

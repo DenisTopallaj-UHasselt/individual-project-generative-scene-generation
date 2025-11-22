@@ -97,9 +97,9 @@ log "Project directory: $PROJECT_DIR"
 
 # Create project structure
 log "Creating project directory structure..."
-rm -rf "$PROJECT_DIR" # Clean up if exists
+mkdir -p "$PROJECT_DIR"
+rm -rf "$PROJECT_DIR"/{images,database,sparse,dense} 2>/dev/null || true
 mkdir -p "$PROJECT_DIR"/{images,database,sparse,dense}
-
 # Extract frames from video with better quality
 log "Extracting frames from video..."
 # Use select filter to limit frames and maintain quality
@@ -207,6 +207,11 @@ else
 	DENSE_STATUS="✗ Skipped"
 fi
 '
+
+# Fix permissions for database and output files
+
+log log "Setting file permissions..."
+chmod -R 777 "$PROJECT_DIR" 2>/dev/null || true
 
 log "================================"
 log "PIPELINE COMPLETE!"
